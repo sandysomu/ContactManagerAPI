@@ -31,6 +31,8 @@ namespace ContentManagerAPI.Controllers
 
 
 
+        // FirstName, LastName, MobileNumber, Address , emailId
+
 
 
 
