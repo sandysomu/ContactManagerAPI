@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.DynamoDBv2;
 using ContentManagerAPI.Model;
+using DynamoDb.Libs.DynamoDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -46,9 +48,17 @@ namespace ContentManagerAPI
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
-            
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+
+            Environment.SetEnvironmentVariable("AWS_ACCESS_KEY_ID", Configuration["AWS:AccessKey"]);
+            Environment.SetEnvironmentVariable("AWS_SECRET_KEY_ID", Configuration["AWS:SecretKey"]);
+            Environment.SetEnvironmentVariable("AWS_REGION", Configuration["AWS:Region"]);
+
+            services.AddAWSService<IAmazonDynamoDB>();
+
             // Added AppSettings class to load on start up. ALl properties defined in the class will save relevant properties from the json file.
             services.Configure<AppSettings>(Configuration);
+            services.AddSingleton<IDynamoDbExamples, DynamoDbExamples>();
 
 
         }
