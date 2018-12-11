@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Amazon.DynamoDBv2;
+﻿
+using ContentManagerAPI.Data;
 using ContentManagerAPI.Model;
-using DynamoDb.Libs.DynamoDb;
+using ContentManagerAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ContentManagerAPI
@@ -48,18 +47,19 @@ namespace ContentManagerAPI
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
-            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+         
+            services.AddDbContext<ContactsApiContext>(options => { options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]); });
 
-            Environment.SetEnvironmentVariable("AWS_ACCESS_KEY_ID", Configuration["AWS:AccessKey"]);
-            Environment.SetEnvironmentVariable("AWS_SECRET_KEY_ID", Configuration["AWS:SecretKey"]);
-            Environment.SetEnvironmentVariable("AWS_REGION", Configuration["AWS:Region"]);
+            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+         //   services.AddTransient<IExampleService, ExampleService>();
+            services.AddTransient<IContactsService, ContactsService>();
 
-            services.AddAWSService<IAmazonDynamoDB>();
+            services.AddTransient<ContactsApiContext>();
 
+            
             // Added AppSettings class to load on start up. ALl properties defined in the class will save relevant properties from the json file.
             services.Configure<AppSettings>(Configuration);
-            services.AddSingleton<IDynamoDbExamples, DynamoDbExamples>();
-
+            
 
         }
 
@@ -87,9 +87,6 @@ namespace ContentManagerAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
-
-
 
             app.UseHttpsRedirection();
             app.UseMvc();

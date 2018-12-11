@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentManagerAPI", "ContentManagerAPI\ContentManagerAPI.csproj", "{F45B9957-093A-4651-BD88-D7E93969F902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDb.Libs", "DynamoDb.Libs\DynamoDb.Libs.csproj", "{9248D5AA-B21D-42E7-9634-354DE1E111F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentManagerAPI.Database", "ContentManagerAPI.Database\ContentManagerAPI.Database.csproj", "{1356D140-1A08-488F-A3DE-C749747F806B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F45B9957-093A-4651-BD88-D7E93969F902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F45B9957-093A-4651-BD88-D7E93969F902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F45B9957-093A-4651-BD88-D7E93969F902}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9248D5AA-B21D-42E7-9634-354DE1E111F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9248D5AA-B21D-42E7-9634-354DE1E111F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9248D5AA-B21D-42E7-9634-354DE1E111F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9248D5AA-B21D-42E7-9634-354DE1E111F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1356D140-1A08-488F-A3DE-C749747F806B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1356D140-1A08-488F-A3DE-C749747F806B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1356D140-1A08-488F-A3DE-C749747F806B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1356D140-1A08-488F-A3DE-C749747F806B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
