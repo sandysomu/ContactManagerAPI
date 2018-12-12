@@ -28,9 +28,9 @@ namespace ContentManagerAPI.Services
         public ContactsInfo GetContactsInfo(string name)
         {
 
-           ContactsInfo info = context.ContactsInfo.Where(e => e.FirstName == name)
-                .OrderBy(e => e.FirstName)
-                .FirstOrDefault();
+            ContactsInfo info = context.ContactsInfo.Where(e => e.FirstName == name)
+                 .OrderBy(e => e.FirstName)
+                 .FirstOrDefault();
             return info;
         }
 
@@ -67,7 +67,8 @@ namespace ContentManagerAPI.Services
         private bool VerifyExistingRecords(ContactsInfo info)
         {
             if (context.ContactsInfo.Where(e =>
-                    e.FirstName == info.FirstName && e.LastName == info.LastName && e.PhoneNumber == info.PhoneNumber).ToList().Count > 0)
+                        e.FirstName == info.FirstName.ToLower() && e.LastName == info.LastName.ToLower() && e.PhoneNumber == info.PhoneNumber)
+                    .ToList().Count > 0)
                 return true;
             return false;
         }
