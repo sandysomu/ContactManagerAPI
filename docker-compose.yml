@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  contentmanagerapi:
+    image: ${DOCKER_REGISTRY-}contentmanagerapi
+    build:
+      context: .
+      dockerfile: ContentManagerAPI/Dockerfile

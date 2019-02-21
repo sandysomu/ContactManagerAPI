@@ -48,7 +48,9 @@ namespace ContentManagerAPI
             });
 
          
-            services.AddDbContext<ContactsApiContext>(options => { options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]); });
+           // services.AddDbContext<ContactsApiContext>(options => { options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]); });
+
+            services.AddDbContext<ContactsApiContext>(options => { options.UseNpgsql(Configuration["ConnectionStrings:PostgresConString"]); });
 
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
          //   services.AddTransient<IExampleService, ExampleService>();

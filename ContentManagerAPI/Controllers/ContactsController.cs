@@ -24,7 +24,15 @@ namespace ContentManagerAPI.Controllers
         [HttpGet("GetContactInfo/{name}")]
         public ContactsInfo GetTransaction(string name)
         {
+
             return _contactService.GetContactsInfo(name);
+        }
+
+        [HttpGet("GetContactInfo/test")]
+        public ActionResult test()
+        {
+
+            return Ok("Access to DB not required for this endpoint");
         }
 
         [HttpPost("PostContactInfo")]
@@ -32,17 +40,12 @@ namespace ContentManagerAPI.Controllers
         {
             try
             {
-              return Ok(_contactService.UpdateContactInfo(Info));
+                return Ok(_contactService.UpdateContactInfo(Info));
             }
             catch (Exception e)
             {
                 return Ok(e.InnerException.Message);
             }
-
-
         }
-
-
-
     }
 }
