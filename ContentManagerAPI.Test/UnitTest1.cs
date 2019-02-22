@@ -11,7 +11,9 @@ namespace ContentManagerAPI.Test
         public async Task Test1()
         {
             string url = "http://localhost:8080/Contacts/GetContactInfo/saanu";
+            
             //var client = new HttpClient();
+
             var client = new HttpClient
             {
                 BaseAddress = new Uri(url)
@@ -21,17 +23,10 @@ namespace ContentManagerAPI.Test
 
             HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
 
-            var myRootObject = await response.Content.ReadAsAsync<RootObject>();
+            var myRootObject = await response.Content.ReadAsAsync<ContactInfo>();
         }
     }
 
 
-    public class RootObject
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int PhoneNumber { get; set; }
-    }
-
+    
 }
